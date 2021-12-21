@@ -1,0 +1,7 @@
+.container {
+    /* background-color: aqua; */
+    background: rgba(222, 234, 236, 0.267);
+    border-radius: 0.5rem;
+    
+    padding: 20px;
+}
