@@ -58,13 +58,13 @@ function App() {
         <div className="large-post">
           <LargePost/>
         </div>
-        <div className="small-post-1">
+        <div className="small-post small-post-1">
           <SmallPost />
         </div>
-        <div className="small-post-2">
+        <div className="small-post small-post-2">
           <SmallPost />
         </div>
-        <div className="small-post-3">
+        <div className="small-post small-post-3">
           <SmallPost />
         </div>
         
