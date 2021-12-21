@@ -1,11 +1,14 @@
 .App-blue {
   text-align: center;
-  background-color: #47BEC6;
+  background: linear-gradient(to right top, #65dfc9, #6cdbeb);
+  margin-bottom: 50px;
 }
 
 .App-orange {
   text-align: center;
-  background-color: #D9B97B;
+  /* background: linear-gradient(to right top, #fde38d, #ebc36c); */
+  margin-bottom: 50px;
+
 }
 
 .App-logo {
@@ -190,6 +193,8 @@
   grid-template-columns: 1fr 5fr 5fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   text-align: center;
+  height: 60vh;
+  margin-bottom: 10%;
   
 }
 
@@ -199,29 +204,36 @@
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 4;
-  background: rgba(222, 234, 236, 0.267);
-  border-radius: 0.5rem;
-  padding: 50px;
-  height: 330px;
+  /* background: rgba(222, 234, 236, 0.267); */
+  background: linear-gradient(to right top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2));
+  border-radius: 1.5rem;
+  /* padding: 50px; */
+  /* height: 60vh; */
+}
+
+.small-post {
+  background: linear-gradient(to left bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2));
+  border-radius: 1.5rem;
 }
 
 .small-post-1 {
   grid-column-start: 3;
   grid-column-end: 4;
   grid-row-start: 1;
-  grid-row-end: span 1;
+  grid-row-end: 2;
+  
 }
 
 .small-post-2 {
   grid-column-start: 3;
   grid-column-end: 4;
   grid-row-start: 2;
-  grid-row-end: span 1;
+  grid-row-end: 3;
 }
 
 .small-post-3 {
   grid-column-start: 3;
   grid-column-end: 4;
   grid-row-start: 3;
-  grid-row-end: span 1;
+  grid-row-end: 4;
 }
