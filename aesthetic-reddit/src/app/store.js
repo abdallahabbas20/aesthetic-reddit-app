@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counterSlice';
-import smallPostReducer from '../features/smallPost/smallPostSlice';
-import largePostReducer from '../features/largePost/largePostSlice';
+import largePostReducer from '../features/Post/largePostSlice';
+import searchBarReducer from '../features/searchBar/searchBarSlice';
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
-    smallPost: smallPostReducer,
-    largePost: largePostReducer
+    largePost: largePostReducer,
+    searchBar: searchBarReducer
   },
 });

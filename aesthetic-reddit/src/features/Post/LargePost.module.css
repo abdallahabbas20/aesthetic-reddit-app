@@ -6,9 +6,13 @@ li {
 ul {
     display: flex;
     justify-content: space-around;
+   
 }
 
 
 img {
     padding: 35px;
 }
+
+
+

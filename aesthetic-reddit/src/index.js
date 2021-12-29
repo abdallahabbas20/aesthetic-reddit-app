@@ -6,6 +6,9 @@ import { store } from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import ThemeContextWrapper from './features/context/themeContextWrapper'
+import { redditAsync } from './features/Post/largePostSlice';
+
+store.dispatch(redditAsync());
 
 ReactDOM.render(
   <ThemeContextWrapper>

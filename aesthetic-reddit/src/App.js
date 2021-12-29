@@ -1,15 +1,20 @@
 import React, {useState} from 'react';
 import './App.css';
-import { LargePost } from './features/largePost/LargePost';
-import { SmallPost } from './features/smallPost/SmallPost';
+import { LargePost } from './features/Post/LargePost';
+import { SmallPost } from './features/Post/SmallPost';
 import Toggle from 'react-toggle';
 import SearchField from './features/searchBar/react-search-field';
 import { ThemeContext, themes } from './features/context/themeContext';
+import {selectRedditInfo, selectStatus} from './features/Post/largePostSlice';
+import {useSelector} from 'react-redux'
+
 
 
 function App() {
   const [toggleOn, setToggleOn] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
+  let redditInfo = useSelector(selectRedditInfo)
+  let status = useSelector(selectStatus)
 
 
   let appStyle;
@@ -55,17 +60,17 @@ function App() {
         
       </header>
       <div className="main-content">
-        <div className="large-post">
+        <div className="large-post fade-in-post">
           <LargePost/>
         </div>
-        <div className="small-post small-post-1">
-          <SmallPost />
+        <div className="small-post small-post-1 fade-in-post">
+          <SmallPost index={'1'}/>
         </div>
-        <div className="small-post small-post-2">
-          <SmallPost />
+        <div className="small-post small-post-2 fade-in-post">
+          <SmallPost index={'2'}/>
         </div>
-        <div className="small-post small-post-3">
-          <SmallPost />
+        <div className="small-post small-post-3 fade-in-post">
+          <SmallPost index={'3'}/>
         </div>
         
 

@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { submitSearch } from './searchBarSlice';
 import PropTypes from 'prop-types';
 import TypeChecker from 'typeco';
+import { selectValue } from './searchBarSlice';
+import { useSelector } from 'react-redux';
+import { updateValue } from './searchBarSlice';
+import { useDispatch } from 'react-redux';
 
 const ENTER_KEY = 13;
 const SEARCH_BUTTON_EDGE = 35;
@@ -75,42 +80,28 @@ const SearchField = ({
   placeholder,
   disabled,
   onChange,
-  onEnter,
-  onSearchClick,
-  onBlur,
+  
 }) => {
-  const [value, setValue] = useState(searchText);
+  let value = useSelector(selectValue)
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    setValue(searchText);
-  }, [searchText, setValue]);
+  
 
   const onChangeHandler = useCallback((event) => {
-    setValue(event.target.value);
-    if (TypeChecker.isFunction(onChange)) {
-      onChange(event.target.value, event);
-    }
-  }, [onChange, setValue]);
+    dispatch(updateValue(event.target.value));
+  });
 
-  const onEnterHandler = useCallback((event) => {
-    const isEnterPressed = event.which === ENTER_KEY
-      || event.keyCode === ENTER_KEY;
-    if (isEnterPressed && TypeChecker.isFunction(onEnter)) {
-      onEnter(event.target.value, event);
-    }
-  }, [onEnter]);
+  const handleKeyPress = (event) => {
+      console.log('here')
+      if(event.key === 'Enter') {
+        dispatch(submitSearch(value))
+      }
+  }
 
-  const onSearchClickHandler = useCallback(() => {
-    if (TypeChecker.isFunction(onSearchClick)) {
-      onSearchClick(value);
-    }
-  }, [onSearchClick, value]);
 
-  const onBlurHandler = useCallback((event) => {
-    if (TypeChecker.isFunction(onBlur)) {
-      onBlur(event.target.value, event);
-    }
-  }, [onBlur]);
+  const onSubmitHandler = () => {
+      dispatch(submitSearch(value))
+  }
 
   const className = `react-search-field ${classNames}`;
 
@@ -123,19 +114,19 @@ const SearchField = ({
         className="react-search-field-input"
         style={searchFieldInputStyle}
         onChange={onChangeHandler}
-        onKeyPress={onEnterHandler}
-        onBlur={onBlurHandler}
         placeholder={placeholder}
         type="text"
         value={value}
         disabled={disabled}
+        onKeyPress={handleKeyPress}
       />
       <button
         className="react-search-field-button"
         type="button"
         aria-label="search button"
         style={searchFieldButtonStyle(disabled)}
-        onClick={onSearchClickHandler}
+        onClick={onSubmitHandler}
+        
         disabled={disabled}
       >
         <SearchIcon />
@@ -150,9 +141,9 @@ SearchField.propTypes = {
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
   onChange: PropTypes.func,
-  onEnter: PropTypes.func,
+ 
   onSearchClick: PropTypes.func,
-  onBlur: PropTypes.func,
+  
 };
 
 SearchField.defaultProps = {
@@ -160,10 +151,12 @@ SearchField.defaultProps = {
   searchText: '',
   placeholder: 'Search',
   disabled: false,
-  onChange: null,
-  onEnter: null,
-  onSearchClick: null,
-  onBlur: null,
+  
+  
+  onSearchClick: (value) => {
+      submitSearch(value)
+  },
+  
 };
 
 export default SearchField;
