@@ -34,14 +34,27 @@ useEffect(()=> {
 
     try {
 
+
         if (status == 'complete') {
-            title = redditInfo.data.children[0].data.title;
-            upvotes = "Upvotes: " + redditInfo.data.children[0].data.ups;
-            author = "Post by " + redditInfo.data.children[0].data.author;
-            num_comments = redditInfo.data.children[0].data.num_comments + " comments";
-            url = redditInfo.data.children[0].data.thumbnail;
+
+            let mainIndex = 0;
+
+
+            for (let i=0; i <25; i++ ) {
+                if (redditInfo.data.children[i].data.url.slice(0,18) === 'https://i.redd.it/') {
+                    mainIndex = i;
+                }
+            }
+
+
+            title = redditInfo.data.children[mainIndex].data.title;
+            upvotes = "Up-votes: " + redditInfo.data.children[mainIndex].data.ups;
+            author = "Post by " + redditInfo.data.children[mainIndex].data.author;
+            num_comments = redditInfo.data.children[mainIndex].data.num_comments + " comments";
+            url = redditInfo.data.children[mainIndex].data.url;
+            console.log(url)
             var date1 = new Date()
-            var date2 = new Date(redditInfo.data.children[0].data.created_utc*1000)
+            var date2 = new Date(redditInfo.data.children[mainIndex].data.created_utc*1000)
             var Difference_In_Time = date1.getTime() - date2.getTime();
             
             var Difference_In_Days = Difference_In_Time / (1000 * 3600);
@@ -86,7 +99,7 @@ useEffect(()=> {
         
             <h2>{title}</h2>
             <h4>{upvotes}</h4> 
-            <img src={url} width="200"/>
+            <img src={url} alt="" className="image-post"/>
             <ul>
                 <li>{author}</li>
                 <li>{time}</li>

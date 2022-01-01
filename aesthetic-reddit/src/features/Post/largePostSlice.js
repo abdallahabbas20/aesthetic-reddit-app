@@ -15,9 +15,15 @@ const initialState = {
 // typically used to make async requests.
 export const redditAsync = createAsyncThunk(
     'largePost/fetchReddit',
-    async (searchTerm='marvel') => {
-      
+    async (searchTerm='') => {
+      if (searchTerm === '') {
+        const response = await fetch(`https://www.reddit.com/r/popular.json`);
+        // The value we return becomes the `fulfilled` action payload
+        const jsonResponse = await response.json()
+        return jsonResponse;
+      }
       const response = await fetch(`https://www.reddit.com/search.json?q=${searchTerm}`);
+      
       // The value we return becomes the `fulfilled` action payload
       const jsonResponse = await response.json()
       return jsonResponse;

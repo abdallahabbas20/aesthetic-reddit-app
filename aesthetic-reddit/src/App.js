@@ -33,6 +33,7 @@ function App() {
       
       <header className="App-header">
         
+
         <ThemeContext.Consumer>
             {({ changeTheme }) => (
               <Toggle
@@ -72,11 +73,9 @@ function App() {
         <div className="small-post small-post-3 fade-in-post">
           <SmallPost index={'3'}/>
         </div>
-        
-
-
       </div>
-      
+      <div className="circle1"></div>
+      <div className="circle2"></div>
       
     </div>
   );
